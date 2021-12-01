@@ -1,10 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 type Props = {};
 
 type State = {
+  count: number,
+  interval: number | undefined,
   playing: boolean,
   tempo: number
 };
@@ -13,37 +14,39 @@ class App extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
+      count: 1,
+      interval: undefined,
       playing: false,
       tempo: 60
     };
   };
 
-  public readonly handleClick = () => {
+  public readonly handleClick = (): void => {
+    let interval;
+    if (this.state.playing) {
+      window.clearInterval(this.state.interval);
+    } else {
+      interval = window.setInterval(this.increaseCount, 1 * 1000);
+    };
     this.setState({
+      interval: interval,
       playing: !this.state.playing
-    })
+    });
   };
 
-  public readonly render = () => {
+  public readonly render = (): JSX.Element => {
     return (
-      <div className="App">
+      <div>
+        <h1>{this.state.count}</h1>
         <button onClick={this.handleClick}>{this.state.playing ? "Stop" : "Start"}</button>
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
       </div>
-    )
+    );
+  };
+
+  private readonly increaseCount = (): void => {
+    this.setState({
+      count: this.state.count % 4 + 1
+    });
   };
 };
 
