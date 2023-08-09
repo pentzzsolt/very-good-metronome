@@ -1,8 +1,8 @@
 import { useButton } from '@react-aria/button';
-import { SwitchProps } from './types/SwitchProps';
-import { PropsWithChildren, useRef } from 'react';
+import { ButtonProps } from './types/ButtonProps';
+import { useRef } from 'react';
 
-export const Switch = ({ children, onPress }: PropsWithChildren<SwitchProps>): JSX.Element => {
+export const Button = ({ children, onPress }: ButtonProps): JSX.Element => {
   let ref = useRef(null);
   let { buttonProps } = useButton({
     onPress
