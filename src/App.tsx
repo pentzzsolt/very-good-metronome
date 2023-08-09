@@ -7,7 +7,8 @@ type State = {
   count: number,
   interval: number | undefined,
   playing: boolean,
-  tempo: number
+  tempo: number,
+  timeSignature: string
 };
 
 class App extends React.Component<Props, State> {
@@ -17,13 +18,20 @@ class App extends React.Component<Props, State> {
       count: 1,
       interval: undefined,
       playing: false,
-      tempo: 60
+      tempo: 60,
+      timeSignature: "4/4"
     };
   };
 
   public readonly handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     this.setState({
       tempo: parseInt(event.target.value)
+    });
+  };
+
+  public readonly handleTimeSignatureChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+    this.setState({
+      timeSignature: event.target.value
     });
   };
 
@@ -44,15 +52,23 @@ class App extends React.Component<Props, State> {
     return (
       <div>
         <h1>{this.state.count}</h1>
+        <label htmlFor="timeSignature">Time signature</label>
+        <select onChange={this.handleTimeSignatureChange} value={this.state.timeSignature} id="timeSignature">
+          <option value="2/4">2/4</option>
+          <option value="3/4">3/4</option>
+          <option value="4/4">4/4</option>
+        </select>
         <button onClick={this.handleClick}>{this.state.playing ? "Stop" : "Start"}</button>
-        <input type="range" min="30" max="200" onChange={this.handleChange} value={this.state.tempo} step="1"></input>
+        <label htmlFor="tempo">Tempo: {this.state.tempo}</label>
+        <input id="tempo" type="range" min="30" max="200" onChange={this.handleChange} value={this.state.tempo} step="1"></input>
       </div>
     );
   };
 
   private readonly increaseCount = (): void => {
+    const count = this.state.timeSignature.split("/");
     this.setState({
-      count: this.state.count % 4 + 1
+      count: this.state.count % parseInt(count[0]) + 1
     });
   };
 };
