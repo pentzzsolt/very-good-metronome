@@ -1,5 +1,3 @@
-import { Counter } from "./Counter/Counter";
-import { Footer } from "./Footer/Footer";
-import { Switch } from "./Switch/Switch";
+import { Metronome } from './Metronome/Metronome';
 
-export { Counter, Footer, Switch };
+export { Metronome };

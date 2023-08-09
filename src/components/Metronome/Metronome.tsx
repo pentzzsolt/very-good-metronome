@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './App.css';
 import { Footer } from './components';
 
 export const Metronome = (): JSX.Element => {
