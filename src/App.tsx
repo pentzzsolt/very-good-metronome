@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { Footer } from './components';
 
 type Props = {};
 
@@ -53,7 +54,7 @@ class App extends React.Component<Props, State> {
 
   public readonly render = (): JSX.Element => {
     return (
-      <div>
+      <>
         <h1>{this.state.count}</h1>
         <label htmlFor="timeSignature">Time signature</label>
         <select onChange={this.handleTimeSignatureChange} value={this.state.timeSignature} id="timeSignature">
@@ -64,7 +65,8 @@ class App extends React.Component<Props, State> {
         <button onClick={this.handleClick}>{this.state.playing ? "Stop" : "Start"}</button>
         <label htmlFor="tempo">Tempo: {this.state.tempo}</label>
         <input id="tempo" type="range" min="30" max="200" onChange={this.handleChange} value={this.state.tempo} step="1"></input>
-      </div>
+        <Footer />
+      </>
     );
   };
 
