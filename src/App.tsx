@@ -39,6 +39,9 @@ class App extends React.Component<Props, State> {
     let interval;
     if (this.state.playing) {
       window.clearInterval(this.state.interval);
+      this.setState({
+        count: 1
+      });
     } else {
       interval = window.setInterval(this.increaseCount, 60 / this.state.tempo * 1000);
     };
