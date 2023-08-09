@@ -21,6 +21,12 @@ class App extends React.Component<Props, State> {
     };
   };
 
+  public readonly handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    this.setState({
+      tempo: parseInt(event.target.value)
+    });
+  };
+
   public readonly handleClick = (): void => {
     let interval;
     if (this.state.playing) {
@@ -39,6 +45,7 @@ class App extends React.Component<Props, State> {
       <div>
         <h1>{this.state.count}</h1>
         <button onClick={this.handleClick}>{this.state.playing ? "Stop" : "Start"}</button>
+        <input type="range" min="30" max="200" onChange={this.handleChange} value={this.state.tempo} step="1"></input>
       </div>
     );
   };
