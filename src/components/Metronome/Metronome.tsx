@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Footer } from './components';
+import { Footer, Switch } from './components';
 
 export const Metronome = (): JSX.Element => {
   const [ count, setCount ] = useState(1);
@@ -16,7 +16,7 @@ export const Metronome = (): JSX.Element => {
     setTimeSignature(event.target.value)
   };
 
-  const handleClick = (): void => {
+  const handlePress = (): void => {
     if (isPlaying) {
       window.clearInterval(interval);
       setCount(1)
@@ -40,7 +40,7 @@ export const Metronome = (): JSX.Element => {
         <option value="3/4">3/4</option>
         <option value="4/4">4/4</option>
       </select>
-      <button onClick={handleClick}>{isPlaying ? "Stop" : "Start"}</button>
+      <Switch onPress={handlePress}>{isPlaying ? "Stop" : "Start"}</Switch>
       <label htmlFor="tempo">Tempo: {tempo}</label>
       <input id="tempo" type="range" min="30" max="200" onChange={handleChange} value={tempo} step="1"></input>
       <Footer />
