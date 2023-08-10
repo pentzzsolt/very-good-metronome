@@ -1,38 +1,34 @@
 import { render, screen } from '@testing-library/react';
 import { Footer } from './Footer';
 
-test('renders link to homepage', () => {
-  render(<Footer />);
-  const link = screen.getByRole('link', {
-    name: 'Zsolt Pentz'
-  });
-  expect(link).toBeVisible();
-  expect(link).toHaveAttribute('href', 'https://pentzzsolt.github.io');
-});
+const cases = [
+  {
+    case: "homepage",
+    href: "https://pentzzsolt.github.io",
+    name: "Zsolt Pentz"
+  },
+  {
+    case: "issues",
+    href: "https://github.com/pentzzsolt/very-good-metronome/issues",
+    name: "Report an issue"
+  },
+  {
+    case: "discussions",
+    href: "https://github.com/pentzzsolt/very-good-metronome/discussions",
+    name: "Start a discussion"
+  },
+  {
+    case: "support page",
+    href: "https://www.buymeacoffee.com/pentzzsolt",
+    name: "Support this project"
+  },
+]
 
-test('renders link to issues', () => {
+test.each(cases)("renders link to $case", ({ href, name }) => {
   render(<Footer />);
   const link = screen.getByRole('link', {
-    name: 'Report an issue'
+    name: name
   });
   expect(link).toBeVisible();
-  expect(link).toHaveAttribute('href', 'https://github.com/pentzzsolt/very-good-metronome/issues');
-});
-
-test('renders link to discussions', () => {
-  render(<Footer />);
-  const link = screen.getByRole('link', {
-    name: 'Start a discussion'
-  });
-  expect(link).toBeVisible();
-  expect(link).toHaveAttribute('href', 'https://github.com/pentzzsolt/very-good-metronome/discussions');
-});
-
-test('renders link to support page', () => {
-  render(<Footer />);
-  const link = screen.getByRole('link', {
-    name: 'Support this project'
-  });
-  expect(link).toBeVisible();
-  expect(link).toHaveAttribute('href', 'https://www.buymeacoffee.com/pentzzsolt');
-});
+  expect(link).toHaveAttribute('href', href);
+})
