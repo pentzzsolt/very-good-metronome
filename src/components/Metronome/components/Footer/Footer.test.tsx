@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react';
-import { Footer } from './Footer';
+import { render, screen } from "@testing-library/react";
+import { Footer } from "./Footer";
 
 const cases = [
   {
@@ -31,9 +31,9 @@ const cases = [
  */
 test.each(cases)("renders link to $case", ({ href, name }) => {
   render(<Footer />);
-  const link = screen.getByRole('link', {
+  const link = screen.getByRole("link", {
     name: name
   });
   expect(link).toBeVisible();
-  expect(link).toHaveAttribute('href', href);
+  expect(link).toHaveAttribute("href", href);
 })

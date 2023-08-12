@@ -1,5 +1,5 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren } from "react";
 
 export type LinkProps = PropsWithChildren<{
-  href: HTMLAnchorElement['href']
+  href: HTMLAnchorElement["href"]
 }>;

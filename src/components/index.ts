@@ -1,3 +1,3 @@
-import { Metronome } from './Metronome/Metronome';
+import { Metronome } from "./Metronome/Metronome";
 
 export { Metronome };

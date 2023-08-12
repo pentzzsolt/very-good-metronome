@@ -1,4 +1,4 @@
-import { AriaButtonProps } from '@react-aria/button';
-import { PropsWithChildren } from 'react';
+import { AriaButtonProps } from "@react-aria/button";
+import { PropsWithChildren } from "react";
 
-export type ButtonProps = PropsWithChildren<Pick<AriaButtonProps, 'onPress'>>;
+export type ButtonProps = PropsWithChildren<Pick<AriaButtonProps, "onPress">>;

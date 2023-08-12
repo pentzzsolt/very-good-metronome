@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Button, Footer } from './components';
+import React, { useState } from "react";
+import { Button, Footer } from "./components";
 
 export const Metronome = (): JSX.Element => {
   const [count, setCount] = useState(1);
   const [interval, setInterval] = useState<number | undefined>();
   const [isPlaying, setIsPlaying] = useState(false);
   const [tempo, setTempo] = useState(60);
-  const [timeSignature, setTimeSignature] = useState('4/4');
+  const [timeSignature, setTimeSignature] = useState("4/4");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setTempo(parseInt(event.target.value))
