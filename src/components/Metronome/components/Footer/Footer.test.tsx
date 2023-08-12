@@ -24,6 +24,11 @@ const cases = [
   },
 ]
 
+/**
+ * This test is redundant: it tests the implementation details of the Link
+ * component. Instead, we should mock the Link component and test if our mock
+ * component is getting passed the correct parameters.
+ */
 test.each(cases)("renders link to $case", ({ href, name }) => {
   render(<Footer />);
   const link = screen.getByRole('link', {
