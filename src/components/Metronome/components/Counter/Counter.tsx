@@ -1,4 +1,3 @@
-import "./Counter.css";
-import { CounterProps } from "./Counter.types";
+import { CounterProps } from "./types/CounterProps";
 
-export const Counter = ({ count }: CounterProps): JSX.Element => <h1 className="Counter">{count}</h1>;
+export const Counter = ({ children }: CounterProps): JSX.Element => <h1>{children}</h1>;
