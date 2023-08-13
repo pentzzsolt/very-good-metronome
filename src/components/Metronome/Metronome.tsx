@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { Button, Controls, Footer } from "./components";
+import { Button, Controls, Counter, Footer } from "./components";
 
 export const Metronome = (): JSX.Element => {
   const [count, setCount] = useState(1);
@@ -33,7 +33,7 @@ export const Metronome = (): JSX.Element => {
 
   return (
     <>
-      <h1>{count}</h1>
+      <Counter>{count}</Counter>
       <div>
         <Button onPress={handlePress}>{isPlaying ? "Stop" : "Start"}</Button>
         <Controls onTempoChange={handleTempoChange} onTimeSignatureChange={handleTimeSignatureChange} tempo={tempo} timeSignature={timeSignature} />
