@@ -1,10 +1,11 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import { Button, Controls, Counter, Footer } from "./components";
 import { getIntervalByBpm } from "./utils/getIntervalByBpm/getIntervalByBpm";
 
 export const Metronome = (): JSX.Element => {
+  const intervalId = useRef<number | undefined>();
+
   const [count, setCount] = useState(1);
-  const [interval, setInterval] = useState<number | undefined>();
   const [isPlaying, setIsPlaying] = useState(false);
   const [tempo, setTempo] = useState(60);
   const [timeSignature, setTimeSignature] = useState("4/4");
@@ -19,10 +20,11 @@ export const Metronome = (): JSX.Element => {
 
   const handlePress = (): void => {
     if (isPlaying) {
-      window.clearInterval(interval);
+      window.clearInterval(intervalId.current);
+      intervalId.current = undefined;
       setCount(1)
     } else {
-      setInterval(window.setInterval(increaseCount, getIntervalByBpm(tempo)));
+      intervalId.current = window.setInterval(increaseCount, getIntervalByBpm(tempo));
     };
     setIsPlaying(!isPlaying);
   };
