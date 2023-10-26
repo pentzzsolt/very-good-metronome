@@ -28,7 +28,7 @@ export const Metronome = (): JSX.Element => {
 
   const increaseCount = (): void => {
     const splitCount = timeSignature.split("/");
-    setCount(count % parseInt(splitCount[0]) + 1)
+    setCount(previousCount => previousCount % parseInt(splitCount[0]) + 1)
   };
 
   return (
