@@ -1,26 +1,26 @@
 import { render, screen } from "@testing-library/react";
 import { Footer } from "./Footer";
 
-const cases = [
+const testCases = [
   {
-    case: "homepage",
     href: "https://pentzzsolt.github.io",
-    name: "Zsolt Pentz"
+    name: "Zsolt Pentz",
+    testCase: "homepage",
   },
   {
-    case: "issues",
     href: "https://github.com/pentzzsolt/very-good-metronome/issues",
-    name: "Report an issue"
+    name: "Report an issue",
+    testCase: "issues",
   },
   {
-    case: "discussions",
     href: "https://github.com/pentzzsolt/very-good-metronome/discussions",
-    name: "Start a discussion"
+    name: "Start a discussion",
+    testCase: "discussions",
   },
   {
-    case: "support page",
     href: "https://www.buymeacoffee.com/pentzzsolt",
-    name: "Support this project"
+    name: "Support this project",
+    testCase: "support page",
   },
 ]
 
@@ -29,7 +29,7 @@ const cases = [
  * component. Instead, we should mock the Link component and test if our mock
  * component is getting passed the correct parameters.
  */
-test.each(cases)("renders link to $case", ({ href, name }) => {
+test.each(testCases)("renders link to $testCase", ({ href, name }) => {
   render(<Footer />);
   const link = screen.getByRole("link", {
     name: name
