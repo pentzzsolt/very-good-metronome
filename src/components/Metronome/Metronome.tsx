@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import { Button, Controls, Counter, Footer } from "./components";
+import { getIntervalByBpm } from "./utils/getIntervalByBpm/getIntervalByBpm";
 
 export const Metronome = (): JSX.Element => {
   const [count, setCount] = useState(1);
@@ -21,7 +22,7 @@ export const Metronome = (): JSX.Element => {
       window.clearInterval(interval);
       setCount(1)
     } else {
-      setInterval(window.setInterval(increaseCount, 60 / tempo * 1000));
+      setInterval(window.setInterval(increaseCount, getIntervalByBpm(tempo)));
     };
     setIsPlaying(!isPlaying);
   };
