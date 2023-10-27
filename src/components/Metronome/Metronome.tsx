@@ -1,8 +1,10 @@
 import { ChangeEvent, useRef, useState } from "react";
 import { Button, Controls, Counter, Footer } from "./components";
+import { useAudioContext } from "./hooks/useAudioContext/useAudioContext";
 import { getIntervalByBpm } from "./utils/getIntervalByBpm/getIntervalByBpm";
 
 export const Metronome = (): JSX.Element => {
+  const audioContext = useAudioContext();
   const intervalId = useRef<number | undefined>();
 
   const [count, setCount] = useState(1);
@@ -20,10 +22,12 @@ export const Metronome = (): JSX.Element => {
 
   const handlePress = (): void => {
     if (isPlaying) {
+      audioContext.current?.suspend();
       window.clearInterval(intervalId.current);
       intervalId.current = undefined;
       setCount(1)
     } else {
+      audioContext.current?.resume();
       intervalId.current = window.setInterval(increaseCount, getIntervalByBpm(tempo));
     };
     setIsPlaying(!isPlaying);
